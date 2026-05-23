@@ -1,0 +1,7 @@
+/.phpstan.cache/
+/vendor/
+/var/
+/.env.local
+/.env.*.local
+/composer.lock
+/phpunit.xml

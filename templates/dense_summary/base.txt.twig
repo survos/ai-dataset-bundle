@@ -1,0 +1,18 @@
+Create a dense retrieval summary for this normalized museum catalogue record.
+
+Dataset: {{ dataset }}
+Core: {{ core }}
+Record ID: {{ id }}
+Content type: {{ contentType }}
+DTO: {{ dtoClass }}
+Label: {{ label }}
+
+Known fields:
+{% for field in fields %}
+- {{ field.label }} ({{ field.name }}): {{ field.value is iterable ? field.value|json_encode : field.value }}
+{% endfor %}
+
+Return JSON only:
+{
+  "dense_summary": "A roughly 400-word summary suitable for museum search and chat, using only the catalogued metadata above."
+}

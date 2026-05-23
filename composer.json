@@ -1,0 +1,39 @@
+{
+    "name": "survos/ai-dataset-bundle",
+    "description": "Dataset-scale AI batch processing for Survos datasets using canonical dataset paths and JSONL artifacts.",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "keywords": ["symfony", "ai", "dataset", "batch", "jsonl", "openai"],
+    "autoload": {
+        "psr-4": {
+            "Survos\\AiDatasetBundle\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^8.4",
+        "survos/kit-bundle": "^2.0",
+        "survos/dataset-bundle": "^2.0",
+        "survos/jsonl-bundle": "^2.0",
+        "survos/ai-batch-bundle": "^2.0",
+        "survos/claims-bundle": "^2.0",
+        "survos/data-contracts": "^2.0",
+        "survos/field-bundle": "^2.0",
+        "symfony/console": "^8.0",
+        "symfony/dependency-injection": "^8.0",
+        "symfony/filesystem": "^8.0",
+        "symfony/framework-bundle": "^8.0",
+        "twig/twig": "^3.0"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^13.0"
+    },
+    "suggest": {
+        "yethee/tiktoken": "Improves token and input cost estimates before submitting dataset AI batches."
+    },
+    "extra": {
+        "symfony": {
+            "require": "^8.0"
+        }
+    }
+}
