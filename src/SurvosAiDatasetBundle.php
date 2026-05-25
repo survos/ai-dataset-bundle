@@ -7,7 +7,7 @@ namespace Survos\AiDatasetBundle;
 use Survos\AiDatasetBundle\Service\DatasetAiService;
 use Survos\AiDatasetBundle\Service\DenseSummaryInputBuilder;
 use Survos\ClaimsBundle\SurvosClaimsBundle;
-use Survos\DataBundle\SurvosDatasetBundle;
+use Survos\\DatasetBundle\\SurvosDatasetBundle;
 use Survos\FieldBundle\SurvosFieldBundle;
 use Survos\JsonlBundle\SurvosJsonlBundle;
 use Survos\Kit\AbstractSurvosBundle;

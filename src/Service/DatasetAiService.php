@@ -6,7 +6,7 @@ namespace Survos\AiDatasetBundle\Service;
 
 use Survos\AiDatasetBundle\Dto\DenseSummaryResult;
 use Survos\ClaimsBundle\Entity\Claim;
-use Survos\DataBundle\Service\DataPaths;
+use Survos\DatasetBundle\Service\DataPaths;
 use Survos\DataContracts\Vocabulary\ItemField;
 use Survos\JsonlBundle\IO\JsonlReader;
 use Symfony\AI\Platform\Message\Message;
