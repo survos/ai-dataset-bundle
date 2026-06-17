@@ -23,6 +23,7 @@ use Tacman\AiBatch\TacmanAiBatchBundle;
 #[RequiredBundle(SurvosFieldBundle::class)]
 #[RequiredBundle(SurvosClaimsBundle::class)]
 #[RequiredBundle(TacmanAiBatchBundle::class)]
+// Symfony\Component\HttpKernel\Bundle\Bundle <-- Flex auto-registration marker (see Survos\Kit\AbstractSurvosBundle)
 final class SurvosAiDatasetBundle extends AbstractSurvosBundle
 {
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
