@@ -12,7 +12,6 @@
     "require": {
         "php": "^8.5",
         "survos/kit-bundle": "^2.5",
-        "survos/dataset-bundle": "^2.5",
         "survos/jsonl-bundle": "^2.5",
         "survos/ai-batch-bundle": "^2.5",
         "survos/claims-bundle": "^2.5",

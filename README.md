@@ -5,7 +5,8 @@ Dataset-scale AI batch processing for Survos/Museado datasets.
 This bundle is intentionally separate from `survos/ai-workflow-bundle`.
 `ai-workflow-bundle` operates on individual workflow subjects. This bundle
 operates on dataset JSONL stages, writes durable batch artifacts, and uses the
-canonical workspace paths from `survos/dataset-bundle`.
+canonical workspace paths from `survos/data-contracts` (`DataPaths`, rooted at
+`APP_DATA_DIR`).
 
 ## Responsibilities
 
@@ -57,7 +58,6 @@ Survos\AiDatasetBundle\SurvosAiDatasetBundle::class => ['all' => true],
 
 Required runtime bundles:
 
-- `survos/dataset-bundle`
 - `survos/jsonl-bundle`
 - `survos/ai-batch-bundle`
 - `survos/claims-bundle`

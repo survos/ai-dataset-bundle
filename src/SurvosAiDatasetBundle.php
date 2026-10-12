@@ -7,7 +7,7 @@ namespace Survos\AiDatasetBundle;
 use Survos\AiDatasetBundle\Service\DatasetAiService;
 use Survos\AiDatasetBundle\Service\DenseSummaryInputBuilder;
 use Survos\ClaimsBundle\SurvosClaimsBundle;
-use Survos\\DatasetBundle\\SurvosDatasetBundle;
+use Survos\DataContracts\Path\DataPaths;
 use Survos\FieldBundle\SurvosFieldBundle;
 use Survos\JsonlBundle\SurvosJsonlBundle;
 use Survos\Kit\AbstractSurvosBundle;
@@ -18,7 +18,6 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 use Tacman\AiBatch\TacmanAiBatchBundle;
 
 #[RequiredBundle(SurvosKitBundle::class)]
-#[RequiredBundle(SurvosDatasetBundle::class)]
 #[RequiredBundle(SurvosJsonlBundle::class)]
 #[RequiredBundle(SurvosFieldBundle::class)]
 #[RequiredBundle(SurvosClaimsBundle::class)]
@@ -29,6 +28,16 @@ final class SurvosAiDatasetBundle extends AbstractSurvosBundle
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
         parent::loadExtension($config, $container, $builder);
+
+        // DatasetAiService only needs DataPaths (survos/data-contracts, a plain library) to find
+        // normalized rows under APP_DATA_DIR. Where dataset-bundle is installed it registers
+        // DataPaths from its own richer path config; otherwise define it from the env var.
+        $bundles = $builder->hasParameter('kernel.bundles') ? (array) $builder->getParameter('kernel.bundles') : [];
+        if (!isset($bundles['SurvosDatasetBundle'])) {
+            $container->services()->set(DataPaths::class)
+                ->public()
+                ->args(['$dataDir' => '%env(APP_DATA_DIR)%']);
+        }
 
         $container->services()
             ->defaults()
