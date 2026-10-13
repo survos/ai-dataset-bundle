@@ -145,7 +145,7 @@ final readonly class DatasetBatchManifest implements \JsonSerializable
     private static function requiredString(array $data, string $key): string
     {
         $value = $data[$key] ?? null;
-        if (!\is_string($value) || trim($value) === '') {
+        if (!\is_string($value) || '' === trim($value)) {
             throw new \InvalidArgumentException(sprintf('Manifest is missing required string "%s".', $key));
         }
 
@@ -180,7 +180,7 @@ final readonly class DatasetBatchManifest implements \JsonSerializable
 
     private static function nullableString(mixed $value): ?string
     {
-        if ($value === null) {
+        if (null === $value) {
             return null;
         }
 

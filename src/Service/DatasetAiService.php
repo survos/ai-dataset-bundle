@@ -45,8 +45,8 @@ final class DatasetAiService
         }
 
         $row = $this->findRow($path, $id, $line);
-        if ($row === null) {
-            $io->error($id === null
+        if (null === $row) {
+            $io->error(null === $id
                 ? sprintf('No row found at line %d in %s.', $line, $path)
                 : sprintf('No row found with id "%s" in %s.', $id, $path));
 
@@ -89,6 +89,7 @@ final class DatasetAiService
     ): int {
         if ($batch) {
             $io->warning('Batch mode will be added after the prompt/result contract is validated. Use direct mode for now.');
+
             return Command::INVALID;
         }
 
@@ -98,8 +99,8 @@ final class DatasetAiService
         }
 
         $row = $this->findRow($path, $id, $line);
-        if ($row === null) {
-            $io->error($id === null
+        if (null === $row) {
+            $io->error(null === $id
                 ? sprintf('No row found at line %d in %s.', $line, $path)
                 : sprintf('No row found with id "%s" in %s.', $id, $path));
 
@@ -155,7 +156,7 @@ final class DatasetAiService
 
     private function normalizedPath(string $dataset, string $core): string
     {
-        return $this->dataPaths->stageDir($dataset, 'normalize') . '/' . $core . '.jsonl';
+        return $this->dataPaths->stageDir($dataset, 'normalize').'/'.$core.'.jsonl';
     }
 
     /**
@@ -164,7 +165,7 @@ final class DatasetAiService
     private function findRow(string $path, ?string $id, int $line): ?array
     {
         foreach (JsonlReader::open($path) as $rowNumber => $row) {
-            if ($id === null) {
+            if (null === $id) {
                 if ($rowNumber === $line) {
                     return $row;
                 }

@@ -108,7 +108,7 @@ PROMPT;
     private function requiredRowId(array $row): string
     {
         $value = $row[ItemField::ID] ?? $row[ItemField::SOURCE_ID] ?? null;
-        if (!\is_scalar($value) || trim((string) $value) === '') {
+        if (!\is_scalar($value) || '' === trim((string) $value)) {
             throw new \RuntimeException(sprintf('Normalized row is missing "%s" or "%s".', ItemField::ID, ItemField::SOURCE_ID));
         }
 
@@ -116,7 +116,7 @@ PROMPT;
     }
 
     /**
-     * @param class-string $dtoClass
+     * @param class-string        $dtoClass
      * @param array<string,mixed> $row
      */
     private function hydrateDto(string $dtoClass, array $row): BaseItemDto
@@ -130,7 +130,8 @@ PROMPT;
 
     /**
      * @param array<string,mixed> $row
-     * @param class-string $dtoClass
+     * @param class-string        $dtoClass
+     *
      * @return list<array{name:string,label:string,value:mixed,source:string}>
      */
     private function projectFields(BaseItemDto $dto, array $row, string $dtoClass): array
@@ -172,16 +173,18 @@ PROMPT;
 
     /**
      * @param class-string $dtoClass
+     *
      * @return list<string>
      */
     private function fieldNamesForDto(string $dtoClass): array
     {
         $descriptors = $this->fieldReader->getDescriptors($dtoClass);
-        if ($descriptors !== []) {
+        if ([] !== $descriptors) {
             return array_map(static fn ($descriptor): string => $descriptor->name, $descriptors);
         }
 
         $dto = new $dtoClass();
+
         return array_values(array_filter(
             array_keys(get_object_vars($dto)),
             static fn (string $property): bool => !\in_array($property, ['unmapped', 'denseSummary'], true),
@@ -212,6 +215,6 @@ PROMPT;
 
     private function isEmptyValue(mixed $value): bool
     {
-        return $value === null || $value === '' || $value === [];
+        return null === $value || '' === $value || [] === $value;
     }
 }

@@ -17,7 +17,7 @@ final readonly class DenseSummaryResult implements \JsonSerializable
     public static function fromArray(array $data): self
     {
         $summary = $data['dense_summary'] ?? null;
-        if (!\is_string($summary) || trim($summary) === '') {
+        if (!\is_string($summary) || '' === trim($summary)) {
             throw new \InvalidArgumentException('Dense summary result is missing "dense_summary".');
         }
 
